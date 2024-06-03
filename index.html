@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weatherio Pókemon</title>
+    <meta name="title" content="Weatherio Pókemon">
+    <meta name="description"
+        content="Weatherio Pókemon é um aplicativo de clima feito com javascript para checar a previsão do tempo.">
+
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <script src="assets/js/app.js" type="module"></script>
+    <script src="assets/js/route.js" type="module"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+
+    <header class="header">
+        <div class="container">
+            <a href="" class="loho">
+                <img src="./assets/images/logo.png" width="364" height="58" alt="logo">
+            </a>
+
+            <div class="search-view" data-search-view>
+
+                <div class="search-wrapper">
+                    <input type="search" name="search" placeholder="Busque uma Cidade..." autocomplete="off"
+                        class="search-field" data-search-field="">
+
+                    <span class="material-symbols-outlined h-icon">
+                        search
+                    </span>
+
+                    <button class="icon-btn leading-icon has-state" aria-label="close search" data-search-toggler>
+                        <span class="material-symbols-outlined">
+                            arrow_back
+                        </span>
+                    </button>
+                </div>
+
+                <div class="search-result" data-search-result>
+                    <ul class="iiew-list" data-search-list>
+
+                        <li class="view-item">
+                            <span class="material-symbols-outlined">
+                                location_on
+                                </span>
+
+                            <div>
+                                <p class="item-title">London</p>
+                                <p class="label-2 item-subtitle">State of Londom, GB</p>
+                            </div>
+
+                            <a href="#" class="item-link has-state" data-search-toggler></a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="header-actions">
+                <button class="icon-btn has-state" aria-label="open search">
+                    <span class="material-symbols-outlined">
+                        search
+                        </span>
+                </button>
+
+                <a href="#/current-location" class="btn-primary has-state" data-current-location-btn>
+                    <span class="material-symbols-outlined">
+                        my_location
+                        </span>
+
+                    <span class="span">Current Location</span>
+                </a>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>
