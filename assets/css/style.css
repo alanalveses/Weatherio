@@ -89,7 +89,7 @@ body {
   font-family: "Material Symbols Rounded";
   font-style: normal;
   font-weight: normal;
-  font-size: 1.9rem;
+  font-size: 2.4rem;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -99,8 +99,8 @@ body {
   font-feature-settings: "liga";
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
-  height: 1.9rem;
-  width: 1.9rem;
+  height: 1rem;
+  width: 1rem;
   overflow: hidden;
 }
 
@@ -238,6 +238,18 @@ body {
   font-size: 1.2rem;
 }
 
+.fade-in {
+  animation: fade-in 250ms ease forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /*-----------------------------------*\
   #HEADER
 \*-----------------------------------*/
@@ -374,15 +386,25 @@ header .btn-primary .span {
   padding-inline: 16px 24px;
 }
 
+.search-view .view-item :is(.h-icon, .item-subtitle) {
+  color: #7b7980;
+}
+
+.search-view .view-item .view-link {
+  position: absolute;
+  inset: 0;
+  box-shadow: none;
+}
+
 .search-view a {
-  text-decoration: none; 
-  color: inherit; 
-  font-weight: normal; 
-  background: none; 
-  border: none; 
-  padding: 0; 
-  margin: 0; 
-  outline: none;  
+  text-decoration: none;
+  color: inherit;
+  font-weight: normal;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
 }
 
 .view-item {
@@ -394,21 +416,10 @@ header .btn-primary .span {
   width: 100%;
   height: 100%;
   align-items: center;
-  justify-content: flex-start; 
-  gap: 16px; 
+  justify-content: flex-start;
+  gap: 16px;
   padding-inline: 0;
 }
-
-.search-view .view-item :is(.h-icon, .item-subtitle) {
-  color: #7b7980;
-}
-
-.search-view .view-item .view-link {
-  position: absolute;
-  inset: 0;
-  box-shadow: none;
-}
-
 
 /*-----------------------------------*\
 #MAIN
