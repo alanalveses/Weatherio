@@ -679,7 +679,6 @@ article.container::before {
   text-align: center;
   gap: 12px 14px;
   margin-block-start: 28px;
-  display: none;
 }
 
 .fade-in .footer {
