@@ -10,7 +10,7 @@ import * as module from "./module.js";
  * @param {*} callback Callback function
  */
 const addEventOnElements = function (elements, eventType, callback) {
-  for(const element of elements) element.addEventListener(eventType, callback);
+  for (const element of elements) element.addEventListener(eventType, callback);
 };
 
 /**
@@ -45,68 +45,70 @@ searchField.addEventListener("input", function () {
   }
 
   if (searchField.value) {
-    (searchTimeout = setTimeout(() => {
+    searchTimeout = setTimeout(() => {
       fetchData(url.geo(searchField.value), function (locations) {
         searchField.classList.remove("searching");
         searchResult.classList.add("active");
         searchResult.innerHTML = `
-        <ul class="view-list" data-search-list>
-        </ul>
+        <ul class="view-list" data-search-list></ul>
         `;
 
-        const /** {NodeList} | [] */ itens = [];
+        const /** {NodeList} | [] */ items = [];
 
-        for (const {name, lat, lon, country, state} of locations) {
+        for (const { name, lat, lon, country, state } of locations) {
           const searchItem = document.createElement("li");
           searchItem.classList.add("view-item");
 
           searchItem.innerHTML = `
-            <span class="m-icon">location_on</span>
-
-            <div>
-                <p class="item-title">${name}</p>
-                <p class="label-2 item-subtitle">${state || ""}, ${country}</p>
-            </div>
-
-            <a href="#/weather?lat=${lat}&lon=${lon}" class="item-link has-state" aria-label="${name} weather" data-search-toggler></a>
+              <a href="#/weather?lat=${lat}&lon=${lon}" class="item-link has-state" aria-label="${name} weather" data-search-toggler>
+              <div>
+              <span class="m-icon">location_on</span>
+              </div>
+              <div>
+                  <p class="item-title">${name}</p>
+                  <p class="label-2 item-subtitle">${state || ""}, ${country}</p>
+              </div>
+              
+            </a>
           `;
 
-          searchResult.querySelector("[data-search-list]").appendChild(searchItem);
-          itens.push(searchItem.querySelector("[data-search-toggler]"));
-
+          searchResult
+            .querySelector("[data-search-list]")
+            .appendChild(searchItem);
+          items.push(searchItem.querySelector("[data-search-toggler]"));
         }
-        addEventOnElements(itens, "click", function () {
+        addEventOnElements(items, "click", function () {
           toggleSearch();
           searchResult.classList.remove("active");
-        })
+        });
       });
-    })),
-      searchTimeoutDuration;
+    }, searchTimeoutDuration);
   }
 });
 
-
 const container = document.querySelector("[data-container]");
 const loading = document.querySelector("[data-loading]");
-const currentLocationBtn = document.querySelector("[data-current-location-btn]");
+const currentLocationBtn = document.querySelector(
+  "[data-current-location-btn]"
+);
 const errorContent = document.querySelector("[data-error-content]");
-
 
 /**
  * Render all weather data in html page
- * 
+ *
  * @param {number} lat Latitude
  * @param {number} lon Longitude
  */
 export const updateWeather = function (lat, lon) {
-
   // loading.style.display = "grid";
   container.style.overflowY = "hidden";
-  container.classList.contains("fade-in") ?? container.classList.remove("fade-in");
+  container.classList.contains("fade-in") ??
+    container.classList.remove("fade-in");
   errorContent.style.display = "none";
-  
 
-  const currentWeatherSection = document.querySelector("[data-current-weather]");
+  const currentWeatherSection = document.querySelector(
+    "[data-current-weather]"
+  );
   const highlightSection = document.querySelector("[data-highlights]");
   const hourlySection = document.querySelector("[data-hourly-forecast]");
   const forecastSection = document.querySelector("[data-5-day-forecast]");
@@ -130,13 +132,13 @@ export const updateWeather = function (lat, lon) {
     const {
       weather,
       dt: dateUnix,
-      sys: {sunrise: sunriseUnixUTC, sunset: sunsetUnixUTC },
-      main: {temp, feels_like, pressure, humidity },
+      sys: { sunrise: sunriseUnixUTC, sunset: sunsetUnixUTC },
+      main: { temp, feels_like, pressure, humidity },
       visibility,
-      timezone
-    } = currentWeather
-    const [{ description, icon}] = weather;
-    
+      timezone,
+    } = currentWeather;
+    const [{ description, icon }] = weather;
+
     const card = document.createElement("div");
     card.classList.add("card", "card-lg", "current-weather-card");
 
@@ -159,7 +161,10 @@ export const updateWeather = function (lat, lon) {
                 calendar_today
             </span>
 
-            <p class="title-3 meta-text">${module.getDate(dateUnix, timezone)}</p>
+            <p class="title-3 meta-text">${module.getDate(
+              dateUnix,
+              timezone
+            )}</p>
         </li>
 
         <li class="meta-item">
@@ -172,15 +177,12 @@ export const updateWeather = function (lat, lon) {
     </ul>
     `;
 
-    fetchData(url.reserveGeo(lat, lon), function([{ name, country}]) {
-      cancelAnimationFrame.querySelector("[data-location]").innerHTML = `${name}, ${country}`
-      //card.querySelector("[data-location]").innerHTML = `${name}, ${country}`;
+    fetchData(url.reserveGeo(lat, lon), function ([{ name, country }]) {
+      card.querySelector("[data-location]").innerHTML = `${name}, ${country}`;
+    });
 
-    })
-
-    currentWeatherSection. appendChild(card);
+    currentWeatherSection.appendChild(card);
   });
+};
 
-}
-
-export const error404 = function() {}
+export const error404 = function () {};
